@@ -189,12 +189,12 @@ def order_results():
 
 # %%
 def save_graph(graph, path):
-    with open(path, "wb",encoding='utf-8') as f:
+    with open(path, "wb") as f:
         pickle.dump(graph, f)
 
 def load_graph(path):
     if os.path.exists(path):
-        with open(path, "rb",encoding='utf-8') as f:
+        with open(path, "rb") as f:
             return pickle.load(f)
     return None 
 
