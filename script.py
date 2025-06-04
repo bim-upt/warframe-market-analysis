@@ -189,12 +189,12 @@ def order_results():
 
 # %%
 def save_graph(graph, path):
-    with open(path, "wb") as f:
+    with open(path, "wb",encoding='utf-8') as f:
         pickle.dump(graph, f)
 
 def load_graph(path):
     if os.path.exists(path):
-        with open(path, "rb") as f:
+        with open(path, "rb",encoding='utf-8') as f:
             return pickle.load(f)
     return None 
 
@@ -308,12 +308,12 @@ def detect_communities(graph):
     return partition
 
 def save_partition(partition, filepath):
-    with open(filepath, "w") as f:
+    with open(filepath, "w",encoding='utf-8') as f:
         json.dump(partition, f)
 
 def load_partition(filepath):
     if os.path.exists(filepath):
-        with open(filepath, "r") as f:
+        with open(filepath, "r",encoding='utf-8') as f:
             return json.load(f)
     return None
 
