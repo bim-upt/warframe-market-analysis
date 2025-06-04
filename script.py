@@ -96,7 +96,7 @@ def to_csv(to_csv, path, keys = None, writeheader = 1):
     
     if not keys:
         keys = to_csv[0].keys()
-    with open(path, 'a', newline='') as output_file:
+    with open(path, 'a', newline='', encoding='utf-8') as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         if writeheader != 0:
             dict_writer.writeheader()
