@@ -110,6 +110,7 @@ def outputResults(users, orders):
     to_csv(orders, ordersOutputPath)
 
 # %%
+
 def addData():
     item_urls = getItemUrlList()
     count = 0
@@ -341,7 +342,9 @@ def count_comunities(user_df, item_df):
 
 
 # %%
+redo = False
 if not os.path.exists(usersOutputPath) or not os.path.exists(ordersOutputPath):
+    redo = True
     addData()
     order_results() #correct the fact we have duped users and multiple headers
     remove_data_date_and_reorder(usersOutputPath,usersOutputPath,userDataOrder)
@@ -353,7 +356,7 @@ listings_df = load_listings(ordersOutputPath)
 users_df = load_users(usersOutputPath)
 
 B = load_graph(graphPath)
-if B is None:
+if B is None or redo:
     B = build_bipartite_graph(listings_df, users_df)
     save_graph(B, graphPath)
 
@@ -636,7 +639,7 @@ if search_item:
 
 # %%
 partition = load_partition(partitionFile)
-if partition is None:
+if partition is None or redo:
     partition = detect_communities(B)
     save_partition(partition, partitionFile)
 user_df, item_df = partition_to_tables(B, partition, user_nodes, item_nodes, users_df)
